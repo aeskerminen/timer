@@ -1,4 +1,3 @@
-import { clear } from "@testing-library/user-event/dist/clear"
 import { useState, useEffect } from "react"
 
 function Timer() {
@@ -58,12 +57,13 @@ function Timer() {
     return (
         <div>
             <div>
-                <input onChange={(e) => { setInputH(e.target.value) }}></input>
-                <input onChange={(e) => { setInputM(e.target.value) }}></input>
-                <input onChange={(e) => { setInputS(e.target.value) }}></input>
+                <input onChange={(e) => { setInputH(e.target.valueAsNumber) }}></input>
+                <input onChange={(e) => { setInputM(e.target.valueAsNumber) }}></input>
+                <input onChange={(e) => { setInputS(e.target.valueAsNumber) }}></input>
             </div>
-            <h1>{`Hours: ${hours} Minutes: ${minutes} Seconds: ${seconds}`}</h1>
+            <h1>{`Hours: ${hours < 10 ? '0' + hours : hours} Minutes: ${minutes < 10 ? '0' + minutes : minutes} Seconds: ${seconds < 10 ? '0' + seconds : seconds}`}</h1>
             <button onClick={startHandler}>START</button>
+            <button onClick={stopHandler}>STOP</button>
         </div>
     )
 }
