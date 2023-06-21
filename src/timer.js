@@ -12,18 +12,20 @@ function Timer() {
     let [inputM, setInputM] = useState(0)
     let [inputS, setInputS] = useState(0)
 
-
+    let [isTicking, setIsTicking] = useState(false)
     let [intervalRef, setIntervalRef] = useState(null)
 
 
     const stopHandler = () => {
         clearInterval(intervalRef)
+        setIsTicking(false)
     }
 
     const startHandler = () => {
         stopHandler()
 
         if (totalSeconds > 0) {
+            setIsTicking(true)
             const sec = setInterval(() => {
                 setTotalSeconds((prev) => prev - 1)
             }, 1000);
@@ -56,12 +58,12 @@ function Timer() {
 
     return (
         <div>
-            <div>
-                <input onChange={(e) => { setInputH(e.target.valueAsNumber) }}></input>
-                <input onChange={(e) => { setInputM(e.target.valueAsNumber) }}></input>
-                <input onChange={(e) => { setInputS(e.target.valueAsNumber) }}></input>
+            <div className="input-container">
+                <input id="hour" type="number" disabled={isTicking} min={0} max={99} value={hours < 10 ? '0' + hours : hours} onChange={(e) => { setInputH(e.target.value) }}></input>
+                <input id="minute" type="number" disabled={isTicking} min={0} max={59} value={minutes < 10 ? '0' + minutes : minutes} onChange={(e) => { setInputM(e.target.value) }}></input>
+                <input id="second" type="number" disabled={isTicking} min={0} max={59} value={seconds < 10 ? '0' + seconds : seconds} onChange={(e) => { setInputS(e.target.value) }}></input>
             </div>
-            <h1>{`Hours: ${hours < 10 ? '0' + hours : hours} Minutes: ${minutes < 10 ? '0' + minutes : minutes} Seconds: ${seconds < 10 ? '0' + seconds : seconds}`}</h1>
+
             <button onClick={startHandler}>START</button>
             <button onClick={stopHandler}>STOP</button>
         </div>
