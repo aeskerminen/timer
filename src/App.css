@@ -1,0 +1,11 @@
+.input-container {
+    padding: 1rem;
+}
+
+.input-container input {
+    border-radius: 0;
+    border: none;
+    box-shadow: 1px 1px 1px black;
+
+    width: 2rem;
+}
