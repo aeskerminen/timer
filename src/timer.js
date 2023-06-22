@@ -89,9 +89,9 @@ function Timer() {
     return (
         <div className="container">
             <div className="input-container">
-                <input ref={HRef} id="hour" type="number" disabled={timerSet} min={0} max={99} defaultValue={'00'} {...(timerSet ? { value: hours < 10 ? '0' + hours : hours } : {})} onChange={(e) => { setInputH(e.target.valueAsNumber) }}></input>
-                <input ref={MRef} id="minute" type="number" disabled={timerSet} min={0} max={59} defaultValue={'00'} {...(timerSet ? { value: minutes < 10 ? '0' + minutes : minutes } : {})} onChange={(e) => { setInputM(e.target.valueAsNumber) }}></input>
-                <input ref={SRef} id="second" type="number" disabled={timerSet} min={0} max={59} defaultValue={'00'} {...(timerSet ? { value: seconds < 10 ? '0' + seconds : seconds } : {})} onChange={(e) => { setInputS(e.target.valueAsNumber) }}></input>
+                <input ref={HRef} id="hour" type="number" disabled={timerSet} min={0} max={99} onInput={(e) => e.target.value.length > 2 ? e.target.value = e.target.value.slice(0, 2) : e.target.value} defaultValue={'00'} {...(timerSet ? { value: hours < 10 ? '0' + hours : hours } : {})} onChange={(e) => { setInputH(e.target.valueAsNumber) }}></input>
+                <input ref={MRef} id="minute" type="number" disabled={timerSet} min={0} max={59} onInput={(e) => e.target.value.length > 2 ? e.target.value = e.target.value.slice(0, 2) : e.target.value} defaultValue={'00'} {...(timerSet ? { value: minutes < 10 ? '0' + minutes : minutes } : {})} onChange={(e) => { setInputM(e.target.valueAsNumber) }}></input>
+                <input ref={SRef} id="second" type="number" disabled={timerSet} min={0} max={59} onInput={(e) => e.target.value.length > 2 ? e.target.value = e.target.value.slice(0, 2) : e.target.value} defaultValue={'00'} {...(timerSet ? { value: seconds < 10 ? '0' + seconds : seconds } : {})} onChange={(e) => { setInputS(e.target.valueAsNumber) }}></input>
             </div>
 
             <div className="button" onClick={() => {
